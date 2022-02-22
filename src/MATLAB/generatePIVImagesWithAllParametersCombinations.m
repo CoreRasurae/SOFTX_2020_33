@@ -108,7 +108,7 @@ for i=1:size(flows, 2)
                             pivParameters.noiseLevel=noiseLevel(noiseLevelIndex);%30;         %dBW (10 log (V^2)) - 20dBW -> 10 intensity variation
                             pivParameters.lastWindow=[16 16];    %Last PIV Window size (no overlap) - (y;x)
                             pivParameters.laserSheetThickness=2.00; %2mm laser sheet thickness
-                            pivParameters.outOfPlaneStdDeviation=outOfPlaneStdDeviation(outOfPlaneStdDeviationIndex); %Out of plane velocity standard devitation in mm/frame (1mm/400us) - 0.025 - 0.05 - 0,10
+                            pivParameters.outOfPlaneStdDeviation=outOfPlaneStdDeviation(outOfPlaneStdDeviationIndex); %Out of plane velocity standard devitation in mm/frame - (0.025, or 0.05, or 0,10 mm)
                             pivParameters.noMoveOutOfIA=false;   %Should particles be allowed to move in/out
                                                                  %of their respective Interrogation Area
 
