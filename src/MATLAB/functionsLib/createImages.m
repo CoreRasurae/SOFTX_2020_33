@@ -51,11 +51,15 @@ function [Im0, Im1] = createImages(pivParameters, imageProperties, particleMap, 
     if pivParameters.noiseLevel > 0
         %generate white noise
         maxValue = 2^pivParameters.bits-1;
-        noiseIm0=wgn(imageProperties.sizeY - imageProperties.marginsY, ...
-            imageProperties.sizeX - imageProperties.marginsX, pivParameters.noiseLevel);
-        noiseIm1=wgn(imageProperties.sizeY - imageProperties.marginsY, ...
-            imageProperties.sizeX - imageProperties.marginsX, pivParameters.noiseLevel);
-        
+        % **** 2/24/2023: MODIFIED BY CARL J. LEGLEITER TO AVOID DEPENDENCY ON
+        %                 COMMUNICATIONS TOOLBOX FUNCTION wgn.m
+        noiseIm0=sqrt(10.^(pivParameters.noiseLevel/10)) * ...
+                 randn(imageProperties.sizeY - imageProperties.marginsY, ...
+                       imageProperties.sizeX - imageProperties.marginsX);
+        noiseIm1=sqrt(10.^(pivParameters.noiseLevel/10)) * ...
+                 randn(imageProperties.sizeY - imageProperties.marginsY, ...
+                       imageProperties.sizeX - imageProperties.marginsX);
+        % **** RESUME
         noiseIm0 = noiseIm0 .* maxValue / 255.0;
         noiseIm1 = noiseIm1 .* maxValue / 255.0;
         
